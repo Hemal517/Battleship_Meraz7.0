@@ -1,0 +1,1779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meraz Battleship Challenge — Official Participant Handbook</title>
+  <style>
+    :root {
+      --bg-dark: #080d1a;
+      --card-bg: #0f172a;
+      --card-border: #1e293b;
+      --card-hover: #1e293b;
+      --accent-cyan: #00e5ff;
+      --accent-blue: #38bdf8;
+      --accent-green: #10b981;
+      --accent-red: #f43f5e;
+      --accent-amber: #f59e0b;
+      --accent-purple: #a855f7;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --code-bg: #030712;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.65;
+      padding: 0;
+      margin: 0;
+      scroll-behavior: smooth;
+    }
+
+    /* Layout */
+    .layout {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar Navigation */
+    .sidebar {
+      width: 320px;
+      background: #050814;
+      border-right: 1px solid var(--card-border);
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      padding: 24px 16px;
+      flex-shrink: 0;
+    }
+
+    .sidebar::-webkit-scrollbar {
+      width: 6px;
+    }
+    .sidebar::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 3px;
+    }
+
+    .sidebar-header {
+      padding: 0 8px 16px 8px;
+      border-bottom: 1px solid var(--card-border);
+      margin-bottom: 16px;
+    }
+
+    .sidebar-header h2 {
+      font-size: 1.15rem;
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0;
+    }
+
+    .sidebar-header p {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .nav-section-title {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--text-dim);
+      padding: 12px 8px 4px 8px;
+      font-weight: 700;
+    }
+
+    .nav-links {
+      list-style: none;
+      margin-bottom: 12px;
+    }
+
+    .nav-links li {
+      margin-bottom: 2px;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.86rem;
+      display: block;
+      padding: 7px 12px;
+      border-radius: 6px;
+      transition: all 0.15s ease-in-out;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-cyan);
+      background: rgba(0, 229, 255, 0.08);
+      transform: translateX(4px);
+    }
+
+    /* Main Content Area */
+    .main-content {
+      flex: 1;
+      padding: 40px 56px;
+      max-width: 1120px;
+    }
+
+    /* Hero Banner */
+    .hero {
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0a0f1d 100%);
+      border: 1px solid rgba(0, 229, 255, 0.4);
+      border-radius: 16px;
+      padding: 36px 40px;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 40px rgba(0, 229, 255, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(0, 229, 255, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(0, 229, 255, 0.15);
+      border: 1px solid var(--accent-cyan);
+      color: var(--accent-cyan);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      color: #fff;
+      margin-bottom: 10px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: #cbd5e1;
+      max-width: 800px;
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
+
+    /* Section Styling */
+    section {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 32px 36px;
+      margin-bottom: 36px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    h2 {
+      font-size: 1.55rem;
+      color: var(--accent-cyan);
+      border-bottom: 2px solid rgba(0, 229, 255, 0.2);
+      padding-bottom: 12px;
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      color: #fff;
+      margin: 28px 0 14px 0;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    h4 {
+      font-size: 1.02rem;
+      color: var(--accent-amber);
+      margin: 20px 0 10px 0;
+      font-weight: 600;
+    }
+
+    p, ul, ol {
+      margin-bottom: 16px;
+      color: var(--text-main);
+    }
+
+    ul, ol {
+      padding-left: 24px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    strong {
+      color: #fff;
+    }
+
+    /* Tables */
+    .table-container {
+      overflow-x: auto;
+      margin: 20px 0 24px 0;
+      border-radius: 10px;
+      border: 1px solid var(--card-border);
+      background: #090e1c;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.92rem;
+    }
+
+    th {
+      background: #131d35;
+      color: var(--accent-cyan);
+      padding: 13px 18px;
+      font-weight: 600;
+      border-bottom: 1px solid var(--card-border);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-size: 0.82rem;
+    }
+
+    td {
+      padding: 13px 18px;
+      border-bottom: 1px solid var(--card-border);
+      color: var(--text-main);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    /* Code Blocks */
+    pre {
+      background: var(--code-bg);
+      border: 1px solid #1e293b;
+      border-radius: 10px;
+      padding: 18px 22px;
+      overflow-x: auto;
+      font-family: "JetBrains Mono", "Fira Code", "Consolas", monospace;
+      font-size: 0.88rem;
+      line-height: 1.55;
+      color: #93c5fd;
+      margin: 18px 0;
+    }
+
+    code {
+      font-family: "JetBrains Mono", "Fira Code", "Consolas", monospace;
+      background: rgba(0, 229, 255, 0.08);
+      color: var(--accent-cyan);
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-size: 0.88em;
+    }
+
+    pre code {
+      background: transparent;
+      padding: 0;
+      color: inherit;
+    }
+
+    /* Callout Alerts */
+    .alert {
+      border-radius: 10px;
+      padding: 18px 22px;
+      margin: 20px 0;
+      border-left: 5px solid;
+    }
+
+    .alert-info {
+      background: rgba(56, 189, 248, 0.1);
+      border-color: var(--accent-blue);
+      color: #bae6fd;
+    }
+
+    .alert-warning {
+      background: rgba(245, 158, 11, 0.1);
+      border-color: var(--accent-amber);
+      color: #fde68a;
+    }
+
+    .alert-success {
+      background: rgba(16, 185, 129, 0.1);
+      border-color: var(--accent-green);
+      color: #a7f3d0;
+    }
+
+    .alert-danger {
+      background: rgba(244, 63, 94, 0.1);
+      border-color: var(--accent-red);
+      color: #fecdd3;
+    }
+
+    .alert-title {
+      font-weight: 700;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-block;
+      padding: 3px 9px;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .badge-cyan { background: rgba(0, 229, 255, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); }
+    .badge-green { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid var(--accent-green); }
+    .badge-red { background: rgba(244, 63, 94, 0.15); color: var(--accent-red); border: 1px solid var(--accent-red); }
+    .badge-amber { background: rgba(245, 158, 11, 0.15); color: var(--accent-amber); border: 1px solid var(--accent-amber); }
+    .badge-purple { background: rgba(168, 85, 247, 0.15); color: var(--accent-purple); border: 1px solid var(--accent-purple); }
+
+    /* Visual Grid Diagram */
+    .visual-grid {
+      display: inline-block;
+      background: #040814;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-family: monospace;
+      font-size: 0.85rem;
+      line-height: 1.35;
+      color: #38bdf8;
+      margin: 10px 0;
+    }
+
+    .task-card {
+      background: #090e1c;
+      border: 1px solid #1e293b;
+      border-radius: 10px;
+      padding: 22px;
+      margin-bottom: 20px;
+    }
+
+    .task-card h3 {
+      margin-top: 0;
+      color: var(--accent-cyan);
+    }
+
+    /* Print view */
+    @media print {
+      .sidebar { display: none; }
+      .main-content { max-width: 100%; padding: 0; }
+      body { background: #fff; color: #000; }
+      section { border: 1px solid #ccc; box-shadow: none; background: #fff; color: #000; }
+      pre { background: #f4f4f4; color: #000; border: 1px solid #ccc; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="layout">
+  <!-- Sidebar Navigation -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <h2>Meraz Battleship</h2>
+      <p>Official Participant Engineering Handbook</p>
+    </div>
+
+    <div class="nav-section-title">Getting Started</div>
+    <ul class="nav-links">
+      <li><a href="#mission">1. Your Mission (What to Build)</a></li>
+      <li><a href="#overview">2. Event Overview & Architecture</a></li>
+      <li><a href="#display-first">2.1 Strategy: Display First!</a></li>
+      <li><a href="#software-setup">2.2 Software & Arduino IDE Setup</a></li>
+      <li><a href="#display-wiring">2.3 2.4" SPI TFT Screen Wiring</a></li>
+      <li><a href="#peripherals-wiring">2.4 LEDs & Buzzer (Choose Your Pins)</a></li>
+    </ul>
+
+    <div class="nav-section-title">Hardware & Architecture</div>
+    <ul class="nav-links">
+      <li><a href="#hardware-build">3. Hardware Implementation & Architecture (+20 pts)</a></li>
+      <li><a href="#circuit-build" style="padding-left: 20px; font-size: 0.82rem;">&bull; Status LEDs & Buzzer (+20 pts)</a></li>
+      <li><a href="#pin-config" style="padding-left: 20px; font-size: 0.82rem;">&bull; Pin Configuration Guide</a></li>
+      <li><a href="#referee-eval" style="padding-left: 20px; font-size: 0.82rem;">&bull; Pre-Match Referee Evaluation</a></li>
+      <li><a href="#terminal-features" style="padding-left: 20px; font-size: 0.82rem;">&bull; Pre-Built Terminal GUI</a></li>
+      <li><a href="#subsystem-peer" style="padding-left: 20px; font-size: 0.82rem;">&bull; ESP-NOW Peer Registration</a></li>
+      <li><a href="#subsystem-reg" style="padding-left: 20px; font-size: 0.82rem;">&bull; Fleet & Loadout Registration</a></li>
+      <li><a href="#subsystem-combat" style="padding-left: 20px; font-size: 0.82rem;">&bull; Artillery & Powers Transmission</a></li>
+      <li><a href="#subsystem-events" style="padding-left: 20px; font-size: 0.82rem;">&bull; Display Architecture & Audio</a></li>
+      <li><a href="#packets">4. Packet Structures & Sizes</a></li>
+    </ul>
+
+    <div class="nav-section-title">Rules & Strategy</div>
+    <ul class="nav-links">
+      <li><a href="#fleet-rules">5. The 7x7 Grid & 16 HP Fleet</a></li>
+      <li><a href="#loadout-rules">6. Power Loadout Selection</a></li>
+      <li><a href="#powers-detail">7. The 7 Special Powers</a></li>
+      <li><a href="#scoring">8. Scoring & Tournament Phases</a></li>
+    </ul>
+
+    <div class="nav-section-title">Testing & Reference</div>
+    <ul class="nav-links">
+      <li><a href="#hex-examples">9. Example Raw Hex Bytes</a></li>
+      <li><a href="#troubleshooting">10. Exhaustive Troubleshooting</a></li>
+    </ul>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    
+    <!-- Hero Banner -->
+    <div class="hero">
+      <div class="hero-badge">Meraz Technical Festival</div>
+      <h1>MERAZ BATTLESHIP CHALLENGE</h1>
+      <p>Welcome, Engineers! Your mission is to build a smart physical Battleship combat terminal using an ESP32 microcontroller, breadboard peripherals (Status LEDs and Audio Buzzer), and an interactive 2.4" SPI TFT Touch Display.</p>
+    </div>
+
+    <!-- Section 1: The Mission -->
+    <section id="mission">
+      <h2>1. Your Mission: What You Have to Build</h2>
+      <p>To successfully compete in the Meraz Battleship tournament, your team must build a fully functional physical terminal. Here is exactly what you are responsible for:</p>
+      
+      <div class="task-card">
+        <h3><span class="badge badge-amber">Hardware Implementation Mission</span> (Breadboard Circuitry &bull; Up to +20 Points)</h3>
+        <p>Before tournament Round 1 begins, referees inspect your breadboard circuit and terminal interface. You can score up to <strong>+20 Circuit & GUI Build points</strong> on the official leaderboard:</p>
+        <ul>
+          <li><strong>2.4" SPI TFT Touch Screen:</strong> Wire the ILI9341 display and XPT2046 touch controller to the ESP32 SPI bus to render the tactical radar grid and interactive touch controls.</li>
+          <li><strong>Green "YOUR TURN" LED:</strong> Connect a Green LED with a 220&Omega;&ndash;330&Omega; current-limiting resistor to a safe digital output pin on your ESP32. Must illuminate solid HIGH when it is your team's turn to fire, and extinguish LOW when waiting.</li>
+          <li><strong>Red "HIT" LED:</strong> Connect a Red LED with a 220&Omega;&ndash;330&Omega; current-limiting resistor to a safe digital output pin. Must flash rapidly 3 times (60ms ON / 60ms OFF) whenever your attack strikes an enemy ship cell or eliminates an opposing fleet.</li>
+          <li><strong>Audio Piezo Buzzer:</strong> Wire a piezo buzzer to a safe digital output pin to chime pleasantly at 1500 Hz on your turn, and emit a sharp 2400 Hz confirmation beep on successful hits.</li>
+        </ul>
+      </div>
+
+      <div class="task-card">
+        <h3><span class="badge badge-cyan">Firmware Configuration Mission</span> (<code>participant_starter.ino</code>)</h3>
+        <p>To ensure high performance and reliable radio networking, the tournament firmware chassis is <strong>100% pre-built and provided out of the box</strong>! You do not need to write raw radio drivers or packet serializers from scratch. Your configuration steps:</p>
+        <ul>
+          <li><strong>Pin Assignments:</strong> Open <code>participant_starter.ino</code> and configure <code>LED_GREEN_PIN</code>, <code>LED_RED_PIN</code>, and <code>BUZZER_PIN</code> to match the GPIOs you wired on your breadboard.</li>
+          <li><strong>Team Identity:</strong> Choose your squad (Team 1, 2, 3, or 4) interactively on the touch screen at startup (or via Serial: <code>TEAM 1..4</code>) — no need to recompile! Customize your <code>MY_TEAM_NAME</code> (e.g. "SQUAD ALPHA") in code.</li>
+          <li><strong>Central Referee Link:</strong> Enter the organizer's 6-byte referee MAC address in <code>centralMac</code> so your board registers seamlessly via ESP-NOW.</li>
+          <li><strong>Ready to Battle:</strong> Flash the firmware, verify the visual startup self-test flash, place your ships via the touch wizard, lock your power loadout, and report to the arena referees for your +20 build points evaluation!</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Section 2: Overview -->
+    <section id="overview">
+      <h2>2. Event Overview & System Architecture</h2>
+      <p>The <strong>Meraz Battleship Challenge</strong> is a 4-team simultaneous naval warfare competition. Unlike classic board games where you talk to one opponent, in Meraz, <strong>four physical ESP32 terminals</strong> compete concurrently across a wireless arena commanded by a dedicated <strong>Central Node referee</strong>.</p>
+
+      <div class="alert alert-info">
+        <div class="alert-title">Core Technology: ESP-NOW Protocol</div>
+        <strong>ESP-NOW</strong> is a connectionless Wi-Fi packet technology developed by Espressif. It allows microcontrollers to communicate in under <strong>5 milliseconds</strong> using raw radio packets, completely independent of local routers, internet gateways, or IP handshakes.
+      </div>
+
+      <h3>System Communication Architecture:</h3>
+      <pre><code>+---------------------------------------------------------------------------------------+
+|                                    CENTRAL REFEREE NODE                               |
+|                         (ESP32 Master + Live Projector Dashboard)                     |
++---------------------------------------------------------------------------------------+
+        ^ Channel 1          ^ Channel 1          ^ Channel 1          ^ Channel 1
+        | (ESP-NOW)          | (ESP-NOW)          | (ESP-NOW)          | (ESP-NOW)
+        v                    v                    v                    v
++----------------+   +----------------+   +----------------+   +----------------+
+|  TEAM 1 NODE   |   |  TEAM 2 NODE   |   |  TEAM 3 NODE   |   |  TEAM 4 NODE   |
+|  - 2.4" TFT    |   |  - 2.4" TFT    |   |  - 2.4" TFT    |   |  - 2.4" TFT    |
+|  - Status LEDs |   |  - Status LEDs |   |  - Status LEDs |   |  - Status LEDs |
+|  - Buzzer      |   |  - Buzzer      |   |  - Buzzer      |   |  - Buzzer      |
++----------------+   +----------------+   +----------------+   +----------------+</code></pre>
+
+      <h3>Who Does What in the Tournament?</h3>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>System Component</th>
+              <th>Owner</th>
+              <th>Responsibilities</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Central Node</strong></td>
+              <td>Organizers</td>
+              <td>Enforces turn rotation, validates secret ship placements, computes hits/misses, manages power timers, broadcasts game state, and drives the arena projector dashboard.</td>
+            </tr>
+            <tr>
+              <td><strong>Participant Terminal</strong></td>
+              <td>Your Team!</td>
+              <td>Runs on your ESP32. Renders your tactical radar grid, handles aiming and fire triggers, illuminates Status LEDs, plays sound feedback on the buzzer, and exchanges binary packets over ESP-NOW.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="alert alert-warning">
+        <div class="alert-title">Step 0 for Every Team: Register Your MAC Address!</div>
+        When your ESP32 boots with the starter code, it prints its unique MAC address to the Arduino Serial Monitor (e.g. <code>24:0A:C4:88:00:8C</code>). <strong>You MUST give this MAC address to the organizers</strong> so Central can whitelist your board! If Central does not know your MAC, all your packets will be ignored.
+      </div>
+    </section>
+
+    <!-- Section 2.1: Display First Strategy -->
+    <section id="display-first">
+      <h2>2.1 Development Strategy: Display First!</h2>
+      <p>When starting an embedded systems project, the most common trap is working in the dark without visual feedback. If you start with radio packets, you will be staring at raw serial text trying to guess if your coordinates are right.</p>
+
+      <div class="alert alert-success">
+        <div class="alert-title">Why We Build the Display First:</div>
+        <ul>
+          <li><strong>Immediate Tangible Feedback:</strong> The moment you wire the 2.4" SPI TFT and flash <code>participant_starter.ino</code>, you will see your 7x7 radar grid, opponent selector buttons, and status banner directly on the screen!</li>
+          <li><strong>Visual Anchoring:</strong> When your opponent's grid is right in front of you, understanding coordinates (0..6 X and 0..6 Y) and aiming becomes intuitive.</li>
+          <li><strong>Easy Verification:</strong> Once you wire your hardware peripherals and flash the starter firmware, your display and indicators will update with hits, misses, and turn alerts in real time!</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Section 2.2: Software Setup -->
+    <section id="software-setup">
+      <h2>2.2 Software & Arduino IDE Setup (Step-by-Step for Freshers)</h2>
+      <p>Follow these steps to set up your programming environment before writing code:</p>
+
+      <h3>Step 1: Install Arduino IDE</h3>
+      <p>Download and install <strong>Arduino IDE 2.x</strong> (or 1.8.19) from <a href="https://www.arduino.cc/en/software" target="_blank" style="color:var(--accent-cyan);">arduino.cc</a>.</p>
+
+      <h3>Step 2: Install the ESP32 Board Package</h3>
+      <ol>
+        <li>Open Arduino IDE &rarr; Go to <strong>File &rarr; Preferences</strong>.</li>
+        <li>In the <em>"Additional Boards Manager URLs"</em> box, paste:
+          <pre><code>https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json</code></pre>
+        </li>
+        <li>Go to <strong>Tools &rarr; Board &rarr; Boards Manager...</strong>, search for <code>esp32</code> by <em>Espressif Systems</em>, and click <strong>Install</strong>.</li>
+        <li>Go to <strong>Tools &rarr; Board &rarr; ESP32 Arduino</strong>, and select <strong>DOIT ESP32 DEVKIT V1</strong> (or <em>ESP32 Dev Module</em>).</li>
+        <li>Select the correct COM port under <strong>Tools &rarr; Port</strong>.</li>
+      </ol>
+
+      <h3>Step 3: Install the TFT_eSPI Library (Crucial Display Driver)</h3>
+      <ol>
+        <li>In Arduino IDE, go to <strong>Tools &rarr; Manage Libraries...</strong>.</li>
+        <li>Search for <strong>TFT_eSPI</strong> by <em>Bodmer</em> and click <strong>Install</strong>.</li>
+        <li><strong>Crucial Step:</strong> Unlike standard Arduino libraries, <code>TFT_eSPI</code> requires hardware pin definitions to be configured in its own configuration header file!
+          <ul>
+            <li>Navigate to your computer's folder: <code>Documents/Arduino/libraries/TFT_eSPI/</code>.</li>
+            <li>Open the file named <strong>User_Setup.h</strong> in any code editor (VS Code, Notepad, etc.).</li>
+            <li>Comment out any default display driver lines and ensure the following lines are uncommented:</li>
+          </ul>
+          <pre><code>#define ILI9341_DRIVER
+#define TFT_CS   5
+#define TFT_DC   2
+#define TFT_RST  4
+#define TFT_MOSI 23
+#define TFT_SCLK 18
+#define TFT_MISO 19
+#define TOUCH_CS 15
+#define SPI_FREQUENCY       40000000
+#define SPI_TOUCH_FREQUENCY  2500000</code></pre>
+        </li>
+        <li>Save the file. Now <code>TFT_eSPI</code> knows exactly which pins to talk to on your ESP32!</li>
+      </ol>
+    </section>
+
+    <!-- Section 2.3: Display Wiring -->
+    <section id="display-wiring">
+      <h2>2.3 2.4" SPI TFT Touch Display Wiring (Milestone 1)</h2>
+      <p>The display uses the high-speed <strong>SPI (Serial Peripheral Interface)</strong> bus. Notice that the display screen (ILI9341) and the touch digitizer (XPT2046) share the same clock (<code>SCK</code>) and data lines (<code>MOSI</code>, <code>MISO</code>), but have separate Chip Select lines (<code>CS=5</code> for screen, <code>TOUCH_CS=15</code> for touch):</p>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Display Pin Header</th>
+              <th>ESP32 GPIO Pin</th>
+              <th>Wire Color (Suggested)</th>
+              <th>Signal Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>VCC</strong></td><td><strong>3.3V</strong> (or 5V if module has 3.3V LDO)</td><td>Red</td><td>Main Power</td></tr>
+            <tr><td><strong>GND</strong></td><td><strong>GND</strong></td><td>Black</td><td>Common Ground</td></tr>
+            <tr><td><strong>CS</strong></td><td><strong>GPIO 5</strong></td><td>Orange</td><td>TFT Display Chip Select (<code>TFT_CS</code>)</td></tr>
+            <tr><td><strong>RESET</strong></td><td><strong>GPIO 4</strong></td><td>Yellow</td><td>Hardware Reset (<code>TFT_RST</code>)</td></tr>
+            <tr><td><strong>DC / RS</strong></td><td><strong>GPIO 2</strong></td><td>Green</td><td>Data / Command Select (<code>TFT_DC</code>)</td></tr>
+            <tr><td><strong>SDI / MOSI</strong></td><td><strong>GPIO 23</strong></td><td>Blue</td><td>SPI Master Out Slave In (Data to screen)</td></tr>
+            <tr><td><strong>SCK / CLK</strong></td><td><strong>GPIO 18</strong></td><td>White</td><td>SPI Clock</td></tr>
+            <tr><td><strong>LED</strong></td><td><strong>3.3V</strong></td><td>Red</td><td>Backlight Power</td></tr>
+            <tr><td><strong>SDO / MISO</strong></td><td><strong>GPIO 19</strong></td><td>Grey</td><td>SPI Master In Slave Out (Data from screen)</td></tr>
+            <tr><td><strong>T_CLK</strong></td><td><strong>GPIO 18</strong></td><td>White (Jumpered)</td><td>Shared Touch SPI Clock</td></tr>
+            <tr><td><strong>T_CS</strong></td><td><strong>GPIO 15</strong></td><td>Purple</td><td>Touch Chip Select (<code>TOUCH_CS</code>)</td></tr>
+            <tr><td><strong>T_DIN</strong></td><td><strong>GPIO 23</strong></td><td>Blue (Jumpered)</td><td>Shared Touch SPI MOSI</td></tr>
+            <tr><td><strong>T_DO</strong></td><td><strong>GPIO 19</strong></td><td>Grey (Jumpered)</td><td>Shared Touch SPI MISO</td></tr>
+            <tr><td><strong>T_IRQ</strong></td><td><em>(Leave Unconnected)</em></td><td>&mdash;</td><td>Touch Interrupt (Unused)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="alert alert-success">
+        <div class="alert-title">Milestone 1 Test: Flash and See the Grid!</div>
+        Once wired, open <code>participant_starter.ino</code> in Arduino IDE. Ensure <code>#define ENABLE_TFT 1</code> is set. Click <strong>Upload</strong>. You should immediately see the naval radar grid, coordinates, and team buttons illuminate on the screen!
+      </div>
+    </section>
+
+    <!-- Section 2.4: Peripherals Wiring -->
+    <section id="peripherals-wiring">
+      <h2>2.4 Status LEDs & Audio Buzzer Wiring (Choose Your Own Pins!)</h2>
+      <p>Now that your display is wired and working, you need to add physical feedback devices: a <strong>Green Status LED</strong>, a <strong>Red Status LED</strong>, and an <strong>Audio Buzzer</strong>.</p>
+
+      <div class="alert alert-warning">
+        <div class="alert-title">Important Rule: You Choose Your Own Output Pins!</div>
+        We deliberately do not force you to use specific GPIO pins for the LEDs and Buzzer. Different ESP32 dev boards (30-pin vs 38-pin DevKit V1) label their pin headers differently. Your team will inspect your ESP32 board pinout, select free digital output pins, wire them up on the breadboard, and define them at the top of <code>participant_starter.ino</code>!
+      </div>
+
+      <h3>ESP32 Pin Selection Rules (What to Use and What to Avoid)</h3>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Pin Category</th>
+              <th>GPIO Numbers</th>
+              <th>Can You Use It for LEDs / Buzzer?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Safe General Output Pins</strong></td>
+              <td>Check free pins on your board (e.g. <strong>GPIO 25, 26, 27, 32, 33, 12, 13, 14, 21, 22</strong>)</td>
+              <td><span class="badge badge-green">YES - Safe!</span> Pick any free digital output pin from this group!</td>
+            </tr>
+            <tr>
+              <td><strong>SPI Display Pins</strong></td>
+              <td><strong>GPIO 2, 4, 5, 15, 18, 19, 23</strong></td>
+              <td><span class="badge badge-red">NO - Do Not Use!</span> These are already wired to your 2.4" TFT screen and touch controller.</td>
+            </tr>
+            <tr>
+              <td><strong>Input-Only Pins</strong></td>
+              <td><strong>GPIO 34, 35, 36 (VP), 39 (VN)</strong></td>
+              <td><span class="badge badge-red">NO - Do Not Use!</span> These pins have no internal output transistors. They are strictly analog/digital inputs. You cannot drive an LED or Buzzer from them!</td>
+            </tr>
+            <tr>
+              <td><strong>Boot Strapping & Flash Pins</strong></td>
+              <td><strong>GPIO 0, 1 (TX0), 3 (RX0), 6-11</strong></td>
+              <td><span class="badge badge-red">NO - Do Not Use!</span> GPIO 0 is the bootloader trigger; GPIO 1/3 are USB Serial; GPIO 6-11 connect to internal flash memory.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Breadboard Electronics & Wiring Instructions</h3>
+      <ul>
+        <li><strong>Green Status LED:</strong>
+          <ul>
+            <li><strong>Purpose:</strong> Turns ON when it is <strong>YOUR TURN to fire</strong>! Turns OFF when your turn ends.</li>
+            <li><strong>Wiring:</strong> Your chosen ESP32 GPIO &rarr; 220&Omega; current-limiting resistor &rarr; Long leg (Anode +) &rarr; Short leg (Cathode -) &rarr; Breadboard GND rail.</li>
+          </ul>
+        </li>
+        <li><strong>Red Status LED:</strong>
+          <ul>
+            <li><strong>Purpose:</strong> Flashes rapidly when your attack shot <strong>HITS an opponent's ship</strong>!</li>
+            <li><strong>Wiring:</strong> Your chosen ESP32 GPIO &rarr; 220&Omega; current-limiting resistor &rarr; Long leg (Anode +) &rarr; Short leg (Cathode -) &rarr; Breadboard GND rail.</li>
+          </ul>
+        </li>
+        <li><strong>Piezo Buzzer:</strong>
+          <ul>
+            <li><strong>Purpose:</strong> Plays audio feedback for exactly two events:
+              <ol>
+                <li>Alert sound when it is <strong>your turn to play</strong>.</li>
+                <li>Hit confirmation beep when you <strong>hit an opponent's ship</strong>.</li>
+              </ol>
+            </li>
+            <li><strong>Wiring:</strong> Your chosen ESP32 GPIO &rarr; Buzzer positive pin (marked <code>+</code>); Buzzer negative pin &rarr; Breadboard GND rail.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <div class="alert alert-tip">
+        <div class="alert-title">Electronics 101: Why Current-Limiting Resistors are Mandatory!</div>
+        LEDs have almost zero electrical resistance once they start conducting. If you connect an LED directly between 3.3V and GND without a resistor, an excessive current (&gt;100mA) will surge through the semiconductor, instantly burning out the LED and permanently frying the ESP32 GPIO pin driver! A <strong>220&Omega; to 330&Omega; resistor</strong> limits the current to a safe 8-12mA.
+      </div>
+    </section>
+
+                    <!-- Section 3: UI Architecture & The Guided Coding Tasks -->
+    <section id="hardware-build">
+      <h2>3. Hardware Implementation & Terminal Architecture (+20 pts)</h2>
+      <p>In the Meraz Battleship tournament, your team's primary physical build task is the <strong>hardware circuit implementation and peripheral wiring</strong> (+20 Points evaluated by tournament referees before match kickoff!).</p>
+      
+      <div class="alert alert-success">
+        <div class="alert-title">Software is 100% Pre-Built & Provided!</div>
+        To ensure rock-solid tournament reliability and ultra-fast wireless combat (&lt;5ms latency), the complete visual operating system, ESP-NOW Layer-2 radio engine, touch radar screens, and power armory are <strong>100% fully implemented for you</strong> in <code>participant_starter.ino</code>! You do not need to write raw radio networking code or complex packet serializers. Your team only needs to connect the hardware peripherals on your breadboard, set your 3 GPIO pin constants, enter your team details and Central MAC address, and present your terminal to referees for your +20 build points evaluation!
+      </div>
+
+      <!-- ================= 3.1 HARDWARE CIRCUIT IMPLEMENTATION ================= -->
+      <div class="task-card" id="circuit-build">
+        <h3><span class="badge badge-amber">Hands-On Build Mission</span> Hardware Circuitry: Status LEDs & Audio Buzzer (+20 pts)</h3>
+        
+        <p><strong>1. Theoretical Concept & Embedded Hardware Design:</strong></p>
+        <p>Physical combat terminals rely on multi-sensory feedback: players need visual and auditory alerts so they instantly know when their turn starts or when their shot hits, without having to stare continuously at the screen.</p>
+        <p>Your team wires and drives three external peripherals on your breadboard:</p>
+        <ul>
+          <li><strong>Green "YOUR TURN" LED:</strong> Turns ON (3.3V) when it is your turn; turns OFF (0V) when your turn ends.</li>
+          <li><strong>Red "HIT" LED:</strong> Flashes 3 rapid pulses when your attack scores a direct hit, sinks a ship, or eliminates a team.</li>
+          <li><strong>Audio Piezo Buzzer:</strong> Plays an audible 1500 Hz chime on your turn, and a sharp 2400 Hz confirmation tone on hits.</li>
+        </ul>
+
+        <p><strong>2. Safe ESP32 GPIO Pin Selection Guide:</strong></p>
+        <p>The ESP32 has 30+ pins, but many have dedicated hardware roles. Select your pins wisely to avoid bus conflicts or hardware lockups:</p>
+
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>GPIO Numbers</th>
+                <th>Status</th>
+                <th>Notes & Recommendations</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Recommended Free GPIOs</strong></td>
+                <td><strong>12, 13, 14, 21, 22, 25, 26, 27, 32, 33</strong></td>
+                <td><span class="badge badge-green">SAFE TO USE</span></td>
+                <td>Full digital output capability. Ideal for LEDs and Buzzer! (Example: Green=26, Red=27, Buzzer=25 or Green=32, Red=33, Buzzer=26).</td>
+              </tr>
+              <tr>
+                <td><strong>SPI TFT Display Pins</strong></td>
+                <td><strong>2, 4, 5, 15, 18, 19, 23</strong></td>
+                <td><span class="badge badge-red">DO NOT USE</span></td>
+                <td>Reserved for the TFT display and touch controller. Using these will crash or freeze your screen!</td>
+              </tr>
+              <tr>
+                <td><strong>Input-Only Pins (GPI)</strong></td>
+                <td><strong>34, 35, 36, 39</strong></td>
+                <td><span class="badge badge-red">DO NOT USE</span></td>
+                <td>These pins have NO internal output transistors and cannot drive LEDs or Buzzers.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p><strong>3. Breadboard Wiring Schematic:</strong></p>
+        <pre><code>[ESP32 GPIO (e.g. 26)] ---> [220-330 Ohm Resistor] ---> [Green LED Anode (+)]
+                                                          [Green LED Cathode (-)] ---> [GND]
+
+[ESP32 GPIO (e.g. 27)] ---> [220-330 Ohm Resistor] ---> [Red LED Anode (+)]
+                                                          [Red LED Cathode (-)] ---> [GND]
+
+[ESP32 GPIO (e.g. 25)] --------------------------------> [Piezo Buzzer (+)]
+                                                          [Piezo Buzzer (-)] --------> [GND]</code></pre>
+
+        <div class="alert alert-tip" id="pin-config">
+          <div class="alert-title">Step-by-Step Pin Configuration in participant_starter.ino:</div>
+          <p>Once wired on your breadboard, open <code>participant_starter.ino</code> and configure the three pin definition constants near line 160:</p>
+          <pre><code>// STATUS LEDS & AUDIO BUZZER CONFIGURATION
+#define LED_GREEN_PIN   26   // [YOUR TASK]: Set to your chosen Green LED GPIO pin (e.g., 26 or 32)
+#define LED_RED_PIN     27   // [YOUR TASK]: Set to your chosen Red LED GPIO pin (e.g., 27 or 33)
+#define BUZZER_PIN      25   // [YOUR TASK]: Set to your chosen Buzzer GPIO pin (e.g., 25 or 26)</code></pre>
+          <p>Also confirm your team name and the referee node's MAC address announced at the tournament (Team ID 1&ndash;4 is chosen interactively on screen or Serial at startup!):</p>
+          <pre><code>// Team ID is selected interactively on screen or Serial (TEAM 1..4) before registering
+#define MY_TEAM_NAME    "SQUAD ALPHA"
+uint8_t centralMac[6] = { 0x6C, 0xC8, 0x40, 0x86, 0xFB, 0x20 }; // Referee MAC</code></pre>
+        </div>
+
+        <p><strong>4. Embedded Peripheral Driver Functions (Pre-Built in Sketch):</strong></p>
+        <p><strong>Step A: Peripheral Initialization in <code>ledBuzzerInit()</code>:</strong></p>
+        <pre><code>void ledBuzzerInit() {
+  if (LED_GREEN_PIN >= 0) {
+    pinMode(LED_GREEN_PIN, OUTPUT);
+    digitalWrite(LED_GREEN_PIN, LOW);
+  }
+  if (LED_RED_PIN >= 0) {
+    pinMode(LED_RED_PIN, OUTPUT);
+    digitalWrite(LED_RED_PIN, LOW);
+  }
+  if (BUZZER_PIN >= 0) {
+    pinMode(BUZZER_PIN, OUTPUT);
+    digitalWrite(BUZZER_PIN, LOW);
+  }
+
+  // Quick 100ms startup self-test flash to verify LED wiring visually
+  if (LED_RED_PIN >= 0) {
+    digitalWrite(LED_RED_PIN, HIGH);
+    delay(100);
+    digitalWrite(LED_RED_PIN, LOW);
+  }
+}</code></pre>
+
+        <p><strong>Step B: Turn Indicator Controls in <code>setTurnLed()</code> and <code>playTurnAlert()</code>:</strong></p>
+        <pre><code>void setTurnLed(bool active) {
+  if (LED_GREEN_PIN >= 0) {
+    digitalWrite(LED_GREEN_PIN, active ? HIGH : LOW);
+  }
+}
+
+void playTurnAlert() {
+  if (BUZZER_PIN >= 0) {
+    tone(BUZZER_PIN, 1500, 150); // 1500 Hz chime for 150ms
+  }
+}</code></pre>
+
+        <p><strong>Step C: Direct Hit Confirmation in <code>flashHitFeedback()</code>:</strong></p>
+        <pre><code>void flashHitFeedback() {
+  if (BUZZER_PIN >= 0) {
+    tone(BUZZER_PIN, 2400, 200); // 2400 Hz hit confirmation beep
+  }
+  if (LED_RED_PIN >= 0) {
+    for (int i = 0; i < 3; i++) {
+      digitalWrite(LED_RED_PIN, HIGH);
+      delay(60);
+      digitalWrite(LED_RED_PIN, LOW);
+      delay(60);
+    }
+  }
+}</code></pre>
+
+        <div class="alert alert-success">
+          <div class="alert-title">Hardware Verification & Audio Table:</div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Event</th>
+                  <th>Visual Action</th>
+                  <th>Audio Tone</th>
+                  <th>Function Responsible</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Boot / Startup</strong></td>
+                  <td>Red LED flashes once (100ms)</td>
+                  <td>Silent</td>
+                  <td><code>ledBuzzerInit()</code></td>
+                </tr>
+                <tr>
+                  <td><strong>Your Turn Starts</strong></td>
+                  <td>Green LED lights up SOLID (HIGH)</td>
+                  <td>1500 Hz tone for 150ms</td>
+                  <td><code>setTurnLed(true)</code> &amp; <code>playTurnAlert()</code></td>
+                </tr>
+                <tr>
+                  <td><strong>Your Turn Ends</strong></td>
+                  <td>Green LED turns OFF (LOW)</td>
+                  <td>Silent</td>
+                  <td><code>setTurnLed(false)</code></td>
+                </tr>
+                <tr>
+                  <td><strong>Shot Lands Hit / Sink</strong></td>
+                  <td>Red LED pulses rapidly 3 times</td>
+                  <td>2400 Hz beep for 200ms</td>
+                  <td><code>flashHitFeedback()</code></td>
+                </tr>
+                <tr>
+                  <td><strong>Shot Misses (Water)</strong></td>
+                  <td>Red LED stays OFF</td>
+                  <td>Silent</td>
+                  <td>(None &mdash; Miss is silent)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="alert alert-info" id="referee-eval">
+          <div class="alert-title">Pre-Match Referee Evaluation Checklist (+20 Points Score):</div>
+          <p>Before Round 1 match kickoff, organizers and referees inspect each team's physical terminal at the referee desk:</p>
+          <ul>
+            <li><strong>Display Interface:</strong> TFT screen powers on cleanly, renders tactical 7x7 radar grid and touch buttons (or virtual display simulator).</li>
+            <li><strong>Green Turn Indicator:</strong> When referees trigger your turn, Green LED illuminates solid (3.3V) and Buzzer emits a 1500 Hz chime.</li>
+            <li><strong>Red Hit Indicator:</strong> When an artillery strike lands a hit or sinks a ship, Red LED pulses 3 times and Buzzer sounds 2400 Hz beep.</li>
+            <li><strong>Circuit Safety & Wiring:</strong> Current-limiting resistors (220&Omega;&ndash;330&Omega;) are properly placed in series with both LEDs to protect ESP32 GPIOs.</li>
+            <li><strong>Official Build Score:</strong> Referees record up to <strong>+20 points</strong> in the live tournament scoreboard before the match begins!</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ================= 3.2 TERMINAL GUI FEATURES ================= -->
+      <div class="task-card" id="terminal-features">
+        <h3><span class="badge badge-purple">Pre-Built GUI</span> Full Terminal Operating System Features</h3>
+        <p>Inside <code>participant_starter.ino</code>, the visual operating system is <strong>100% pre-built for you</strong>! You have access to every single feature from the organizers' reference terminal out of the box:</p>
+
+        <ul>
+          <li><strong>Interactive Touch Ship Placement Wizard:</strong> On boot, place and rotate your 4 ships visually by tapping grid cells, or tap <em>"USE DEFAULT"</em>.</li>
+          <li><strong>Interactive Touch Power Loadout Picker:</strong> Select your 2 attack powers, 1 defense power, and energy shield on screen before locking in.</li>
+          <li><strong>Tactical Action & Radar Screen:</strong> Supports standard single-cell artillery attacks, plus multi-cell targeting for all 7 powers (Salvo 3-cells, Double 2-cells, Mine on friendly water, Shield on friendly water, Repair on damaged cells).</li>
+          <li><strong>Powers Armory Menu:</strong> Tap <code>[POWERS]</code> during your turn to browse and activate any equipped power!</li>
+          <li><strong>Full-Screen Animated Result Banners:</strong> Instant visual feedback for Direct Hits, Ships Sunk, Team Eliminations, and Sonar detection counts.</li>
+          <li><strong>Serial Debug Console:</strong> Type test commands (<code>A &lt;team&gt; &lt;x&gt; &lt;y&gt;</code>, <code>P &lt;power&gt; ...</code>, <code>SHIPS</code>, <code>STATUS</code>) directly in Serial Monitor!</li>
+        </ul>
+      </div>
+
+      <!-- ================= 3.3 PRE-BUILT FIRMWARE SUBSYSTEMS ================= -->
+      <div id="firmware-architecture">
+        <h3 style="margin-top: 30px; font-size: 1.4rem; color: #38bdf8;">Pre-Built Firmware Architecture & Wire Subsystems</h3>
+        <p>To help your team understand the underlying embedded engineering and protocol layers, below is an in-depth breakdown of how <code>participant_starter.ino</code> handles wireless communication and event rendering:</p>
+      </div>
+
+      <!-- ================= SUBSYSTEM 1 ================= -->
+      <div class="task-card" id="subsystem-peer">
+        <h3><span class="badge badge-green">Subsystem 1</span> ESP-NOW Peer Registration (<code>addCentralPeer()</code> &bull; Pre-Built)</h3>
+        
+        <p><strong>1. Theoretical Concept & Networking Architecture:</strong></p>
+        <p>In standard Wi-Fi, devices perform a three-way TCP/IP handshake, connect to an Access Point (router), and request dynamic IP addresses via DHCP. This process takes several seconds and introduces significant latency.</p>
+        <p><strong>ESP-NOW</strong> bypasses all network layers and transmits raw Layer-2 802.11 Action Frames directly between radio transceivers in under <strong>5 milliseconds</strong>. However, the ESP32 Wi-Fi baseband hardware features a hardware MAC filter: <em>the radio will refuse to transmit unicast packets into the air until the destination MAC address has been registered in its internal Peer Table</em>.</p>
+        <p>If code calls <code>esp_now_send()</code> without registering the peer first, the Wi-Fi driver aborts immediately with error code <strong>12392 (<code>ESP_ERR_ESPNOW_NOT_FOUND</code>)</strong>.</p>
+
+        <p><strong>2. Data Structure Deep Dive: <code>esp_now_peer_info_t</code>:</strong></p>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Field Name</th>
+                <th>Type</th>
+                <th>Required Value</th>
+                <th>Purpose & Explanation</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>peer_addr[6]</code></td>
+                <td><code>uint8_t[6]</code></td>
+                <td><code>centralMac</code></td>
+                <td>The 6 raw octets of Central's physical Wi-Fi hardware MAC address.</td>
+              </tr>
+              <tr>
+                <td><code>channel</code></td>
+                <td><code>uint8_t</code></td>
+                <td><code>ESPNOW_CHANNEL</code> (1)</td>
+                <td>Wi-Fi 2.4GHz radio frequency channel. All tournament boards must use Channel 1.</td>
+              </tr>
+              <tr>
+                <td><code>encrypt</code></td>
+                <td><code>bool</code></td>
+                <td><code>false</code></td>
+                <td>Encryption state. Must be <code>false</code> for lowest latency raw frame transmission.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p><strong>3. Line-by-Line Code Walkthrough (Pre-Built in Sketch):</strong></p>
+        <pre><code>bool addCentralPeer() {
+  // 1. Zero-initialize the struct. The '= {}' syntax clears all 32 bytes in RAM to 0x00,
+  //    preventing garbage stack memory from corrupting internal interface flags.
+  esp_now_peer_info_t peerInfo = {};
+
+  // 2. Copy the 6 bytes of Central's MAC address into the peer_addr buffer.
+  memcpy(peerInfo.peer_addr, centralMac, 6);
+
+  // 3. Set the radio channel to Channel 1 (must match Central node).
+  peerInfo.channel = 1;
+
+  // 4. Disable encryption keys for maximum tournament throughput.
+  peerInfo.encrypt = false;
+
+  // 5. Register Central in the ESP32 hardware peer table.
+  esp_err_t res = esp_now_add_peer(&peerInfo);
+
+  if (res == ESP_OK) {
+    Serial.println("[ESP-NOW] Central peer registered successfully!");
+    return true;
+  } else {
+    Serial.printf("[ESP-NOW ERROR] Failed to add Central peer (err %d). Check centralMac!\n", res);
+    return false;
+  }
+}</code></pre>
+
+        <div class="alert alert-warning">
+          <div class="alert-title">Subsystem 1 Diagnostics & Diagnostics:</div>
+          <ul>
+            <li><strong>Error 12392 (<code>ESP_ERR_ESPNOW_NOT_FOUND</code>):</strong> Means you tried sending a packet before calling <code>addCentralPeer()</code>, or Central's MAC was registered incorrectly.</li>
+            <li><strong>Error 12391 (<code>ESP_ERR_ESPNOW_EXIST</code>):</strong> The peer was already registered. In ESP-NOW, calling <code>esp_now_add_peer()</code> twice for the same MAC without calling <code>esp_now_del_peer()</code> returns this warning.</li>
+            <li><strong>Wrong MAC Address:</strong> Always check Central's boot Serial Monitor output (e.g. <code>6C:C8:40:86:FB:20</code>) and verify that all 6 bytes match your <code>centralMac[]</code> array at the top of the file!</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ================= SUBSYSTEM 2 ================= -->
+      <div class="task-card" id="subsystem-reg">
+        <h3><span class="badge badge-green">Subsystem 2</span> Fleet & Loadout Registration (<code>sendRegistration()</code> &bull; Pre-Built)</h3>
+        
+        <p><strong>1. Theoretical Concept & Tournament Handshake:</strong></p>
+        <p>Central is the authoritative referee. No board can fire a shot until Central has verified its fleet. During the setup phase, your node must transmit its complete starting state: your assigned Team ID (1&ndash;4), your Team Name string, your 4 secret ship placements, and your locked 8-bit tactical loadout bitmask byte.</p>
+        <p>Central validates that your 4 ships do not overlap, fit strictly within the 7x7 grid, and total exactly 16 HP. If valid, Central adds your team to the active battle roster and replies with <code>REG_OK</code>.</p>
+
+        <p><strong>2. Data Structure Deep Dive: <code>RegistrationPacket</code> (38 Bytes Total):</strong></p>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Offset</th>
+                <th>Field Name</th>
+                <th>Type & Size</th>
+                <th>Purpose & In-Game Function</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Byte 0</td>
+                <td><code>team_id</code></td>
+                <td><code>uint8_t</code> (1 byte)</td>
+                <td>Your assigned team number (1, 2, 3, or 4).</td>
+              </tr>
+              <tr>
+                <td>Bytes 1-20</td>
+                <td><code>team_name</code></td>
+                <td><code>char[20]</code> (20 bytes)</td>
+                <td>ASCII squad name displayed on Central's live projector dashboard.</td>
+              </tr>
+              <tr>
+                <td>Bytes 21-36</td>
+                <td><code>ships[4]</code></td>
+                <td><code>ShipPlacement[4]</code> (16 bytes)</td>
+                <td>Your 4 warships encoded as (x, y, orientation, length) totaling 16 HP.</td>
+              </tr>
+              <tr>
+                <td>Byte 37</td>
+                <td><code>loadout</code></td>
+                <td><code>uint8_t</code> (1 byte)</td>
+                <td>Packed bitmask of your 3 chosen power IDs.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p><strong>3. Line-by-Line Code Walkthrough (Pre-Built in Sketch):</strong></p>
+        <pre><code>void sendRegistration() {
+  RegistrationPacket pkt;
+
+  // 1. Zero out all 38 bytes so uninitialized stack data does not leak over the radio
+  memset(&pkt, 0, sizeof(pkt));
+
+  // 2. Set our team ID (1, 2, 3, or 4)
+  pkt.team_id = MY_TEAM_ID;
+
+  // 3. Copy our team name safely (leaving room for the null-terminator)
+  strncpy(pkt.team_name, MY_TEAM_NAME, sizeof(pkt.team_name) - 1);
+
+  // 4. Copy all 4 secret ship placements (4 ships * 4 bytes = 16 bytes)
+  memcpy(pkt.ships, myShips, sizeof(myShips));
+
+  // 5. Pack our locked-in power loadout bitmask byte
+  pkt.loadout = myLoadout;
+
+  // 6. Transmit raw bytes to Central via ESP-NOW Layer-2 radio:
+  esp_now_send(centralMac, (uint8_t *)&pkt, sizeof(pkt));
+
+  Serial.print("Sent registration to Central (loadout 0x"); Serial.print(myLoadout, HEX); Serial.println(")...");
+}</code></pre>
+      </div>
+
+      <!-- ================= SUBSYSTEM 3 ================= -->
+      <div class="task-card" id="subsystem-combat">
+        <h3><span class="badge badge-green">Subsystem 3</span> Single Strike Attack (<code>sendAttack()</code> &bull; Pre-Built)</h3>
+        
+        <p><strong>1. Theoretical Concept & Turn Flow:</strong></p>
+        <p>When Central broadcasts that it is your turn to fire, tapping a cell on your touchscreen tactical radar triggers an artillery strike. Your terminal constructs and transmits a compact 4-byte <code>AttackPacket</code> to Central.</p>
+        <p>Central validates whether the target is still alive and checks that the coordinates are within bounds (0&ndash;6). Central then inspects the target's grid for secret ships, active Energy Shields, or Sea Mines, updates the official score, and broadcasts the result.</p>
+
+        <p><strong>2. Data Structure Deep Dive: <code>AttackPacket</code> (4 Bytes Total):</strong></p>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Offset</th>
+                <th>Field Name</th>
+                <th>Type</th>
+                <th>Allowed Range</th>
+                <th>Purpose</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Byte 0</td>
+                <td><code>attacker_id</code></td>
+                <td><code>uint8_t</code></td>
+                <td><code>1 - 4</code></td>
+                <td>Your team number (<code>MY_TEAM_ID</code>).</td>
+              </tr>
+              <tr>
+                <td>Byte 1</td>
+                <td><code>target_id</code></td>
+                <td><code>uint8_t</code></td>
+                <td><code>1 - 4</code></td>
+                <td>The opponent team you are shooting at.</td>
+              </tr>
+              <tr>
+                <td>Byte 2</td>
+                <td><code>x</code></td>
+                <td><code>uint8_t</code></td>
+                <td><code>0 - 6</code></td>
+                <td>Target column (0 is leftmost, 6 is rightmost).</td>
+              </tr>
+              <tr>
+                <td>Byte 3</td>
+                <td><code>y</code></td>
+                <td><code>uint8_t</code></td>
+                <td><code>0 - 6</code></td>
+                <td>Target row (0 is topmost, 6 is bottommost).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p><strong>3. Line-by-Line Code Walkthrough (Pre-Built in Sketch):</strong></p>
+        <pre><code>void sendAttack(uint8_t targetTeam, uint8_t x, uint8_t y) {
+  AttackPacket pkt;
+  pkt.attacker_id = MY_TEAM_ID;
+  pkt.target_id   = targetTeam;
+  pkt.x           = x;
+  pkt.y           = y;
+
+  esp_now_send(centralMac, (uint8_t *)&pkt, sizeof(pkt));
+  Serial.printf("[TX] Attack sent -> TEAM %d at (%d, %d)\n", targetTeam, x, y);
+}</code></pre>
+      </div>
+
+      <!-- ================= SUBSYSTEM 4 ================= -->
+      <div class="task-card" id="subsystem-powers">
+        <h3><span class="badge badge-green">Subsystem 4</span> Tactical Powers Packaging (<code>sendPower()</code> &bull; Pre-Built)</h3>
+        
+        <p><strong>1. Theoretical Concept & Multi-Cell Targeting:</strong></p>
+        <p>Unlike single-cell artillery, special powers have diverse targeting rules: Salvo fires 3 distinct artillery shells in a straight line; Double Strike fires 2 shells; Sonar sweeps a 3x3 box; Sea Mine arms an empty water cell; Repair fixes a damaged ship (non-sunk); Shield covers a 3x3 box on your fleet; and Smoke Screen deflects all attacks across your entire fleet for 1 round.</p>
+        <p>To support all 7 powers uniformly over the air with zero memory waste, all special weapons use a single unified 9-byte <code>PowerUpPacket</code>.</p>
+
+        <p><strong>2. Data Structure Deep Dive: <code>PowerUpPacket</code> (9 Bytes Total):</strong></p>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Offset</th>
+                <th>Field Name</th>
+                <th>Type</th>
+                <th>Value Range</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Byte 0</td>
+                <td><code>power</code></td>
+                <td><code>uint8_t</code></td>
+                <td><code>1 - 7</code></td>
+                <td>Power ID (1: Sonar, 2: Salvo, 3: Mine, 4: Repair, 5: Smoke, 6: Shield, 7: Double Strike).</td>
+              </tr>
+              <tr>
+                <td>Byte 1</td>
+                <td><code>team_id</code></td>
+                <td><code>uint8_t</code></td>
+                <td><code>1 - 4</code></td>
+                <td>Your team number (<code>MY_TEAM_ID</code>).</td>
+              </tr>
+              <tr>
+                <td>Byte 2</td>
+                <td><code>target_id</code></td>
+                <td><code>uint8_t</code></td>
+                <td><code>0 - 4</code></td>
+                <td>Target opponent ID (or <code>0</code> for defensive powers).</td>
+              </tr>
+              <tr>
+                <td>Bytes 3-4</td>
+                <td><code>x1, y1</code></td>
+                <td><code>uint8_t, uint8_t</code></td>
+                <td><code>0 - 6</code></td>
+                <td>First coordinate pair (used by Sonar center, Salvo #1, Double #1, Mine, Repair).</td>
+              </tr>
+              <tr>
+                <td>Bytes 5-6</td>
+                <td><code>x2, y2</code></td>
+                <td><code>uint8_t, uint8_t</code></td>
+                <td><code>0 - 6</code></td>
+                <td>Second coordinate pair (used by Salvo #2, Double #2).</td>
+              </tr>
+              <tr>
+                <td>Bytes 7-8</td>
+                <td><code>x3, y3</code></td>
+                <td><code>uint8_t, uint8_t</code></td>
+                <td><code>0 - 6</code></td>
+                <td>Third coordinate pair (used by Salvo #3).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p><strong>3. Line-by-Line Code Walkthrough (Pre-Built in Sketch):</strong></p>
+        <pre><code>static bool sendPower(uint8_t power, uint8_t target, const uint8_t xs[3], const uint8_t ys[3]) {
+  PowerUpPacket pkt;
+  memset(&pkt, 0, sizeof(pkt));
+
+  pkt.power     = power;
+  pkt.team_id   = MY_TEAM_ID;
+  pkt.target_id = target;
+  pkt.x1 = xs[0]; pkt.y1 = ys[0];
+  pkt.x2 = xs[1]; pkt.y2 = ys[1];
+  pkt.x3 = xs[2]; pkt.y3 = ys[2];
+
+  return esp_now_send(centralMac, (uint8_t *)&pkt, sizeof(pkt)) == ESP_OK;
+}</code></pre>
+      </div>
+
+      <!-- ================= SUBSYSTEM 5 ================= -->
+      <div class="task-card" id="subsystem-events">
+        <h3><span class="badge badge-green">Subsystem 5</span> Display Architecture & Real-Time Alerts (Pre-Built)</h3>
+        
+        <p><strong>1. Theoretical Concept & Event-Driven GUI:</strong></p>
+        <p>Microcontrollers cannot afford to redraw an entire LCD screen at 60 FPS in <code>loop()</code>. Redrawing the entire display takes 40&ndash;60ms over SPI, which causes severe screen flickering and starves the Wi-Fi stack of CPU time.</p>
+        <p>Instead, your terminal uses an <strong>event-driven GUI</strong> architecture. The display only redraws when triggered by incoming ESP-NOW radio packet events. In <code>participant_starter.ino</code>, incoming wireless game events are seamlessly connected to their corresponding UI renderers and hardware indicators:</p>
+
+        <p><strong>2. Turn Synchronization (in <code>handleTurnUpdate()</code>):</strong></p>
+        <p>Central regularly broadcasts a <code>TurnUpdatePacket</code> containing the active team (<code>current_turn</code>) and tournament state (<code>round_state</code>):</p>
+        <pre><code>void handleTurnUpdate(TurnUpdatePacket *pkt) {
+  currentTurnTeam = pkt->current_turn;
+  roundState = pkt->round_state;
+
+  if (roundState == STATE_RUNNING) {
+    if (currentTurnTeam == MY_TEAM_ID) {
+      Serial.println(">>> YOUR TURN <<<");
+
+      // Switch screen to combat radar & enable firing buttons
+      uiShowYourTurn();
+
+      // Hardware Indicators: Solid Green LED + 1500 Hz chime
+      setTurnLed(true);
+      playTurnAlert();
+
+    } else {
+      Serial.print("Waiting - it is TEAM "); Serial.print(currentTurnTeam); Serial.println("'s turn.");
+
+      // Show waiting screen indicating which enemy is currently aiming
+      uiShowWaiting(currentTurnTeam);
+
+      // Hardware Indicators: Extinguish Green LED
+      setTurnLed(false);
+    }
+  } else if (roundState == STATE_GAMEOVER) {
+    setTurnLed(false);
+    uiShowMessage("GAME OVER");
+  } else {
+    setTurnLed(false);
+    uiShowMessage("Waiting for start...");
+  }
+}</code></pre>
+
+        <p><strong>3. Attack Feedback & Radar Plotting (in <code>handleFeedback()</code>):</strong></p>
+        <p>When Central resolves your shot, it transmits a <code>FeedbackPacket</code> back to your board containing the official outcome (<code>result_code</code>):</p>
+
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Result Code Constant</th>
+                <th>Value</th>
+                <th>In-Game Meaning</th>
+                <th>UI & Hardware Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>RESULT_MISS</code></td>
+                <td><code>0</code></td>
+                <td>Shot struck open water. 0 damage dealt.</td>
+                <td><code>uiShowAttackResult()</code> &rarr; Blue water splash icon on radar and banner. (LEDs & Buzzer silent).</td>
+              </tr>
+              <tr>
+                <td><code>RESULT_HIT</code></td>
+                <td><code>1</code></td>
+                <td>Direct strike on an active enemy ship cell!</td>
+                <td>Orange/red explosion on radar + dramatic banner. <code>flashHitFeedback()</code> triggers Red LED 3-pulse flash & 2400 Hz beep!</td>
+              </tr>
+              <tr>
+                <td><code>RESULT_SHIP_SUNK</code></td>
+                <td><code>7</code></td>
+                <td>Final cell of that specific enemy ship destroyed!</td>
+                <td>Displays "SHIP SUNK" banner. <code>flashHitFeedback()</code> triggers Red LED 3-pulse flash & 2400 Hz beep!</td>
+              </tr>
+              <tr>
+                <td><code>RESULT_SUNK</code></td>
+                <td><code>2</code></td>
+                <td>All 4 enemy ships destroyed (16 HP lost). Opponent eliminated!</td>
+                <td>Displays "TEAM ELIMINATED" victory banner. <code>flashHitFeedback()</code> triggers Red LED 3-pulse flash & 2400 Hz beep!</td>
+              </tr>
+              <tr>
+                <td><code>RESULT_MINE</code></td>
+                <td><code>3</code></td>
+                <td>You detonated a concealed enemy Sea Mine!</td>
+                <td>Displays "SEA MINE DETONATED" banner. Next turn lost.</td>
+              </tr>
+              <tr>
+                <td><code>RESULT_BLOCKED</code></td>
+                <td><code>4</code></td>
+                <td>Opponent's Energy Shield or Smoke Screen deflected the shell (0 damage dealt).</td>
+                <td>Displays "BLOCKED" or "DEFLECTED" banner. Deflected cells marked with 'S' on radar.</td>
+              </tr>
+              <tr>
+                <td><code>RESULT_UNKNOWN</code></td>
+                <td><code>5</code></td>
+                <td>Target area shrouded in defensive field.</td>
+                <td>Displays defensive banner.</td>
+              </tr>
+              <tr>
+                <td><code>RESULT_INVALID</code></td>
+                <td><code>6</code></td>
+                <td>Illegal shot rejected by Central (e.g. out of bounds).</td>
+                <td>Displays "INVALID MOVE" banner.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Section 4: Packet Structures -->
+    <section id="packets">
+      <h2>4. Packet Structures & Sizes (The Wire Protocol)</h2>
+      <p>In ESP-NOW, communication is purely binary. We do <strong>not</strong> send strings like <code>"ATTACK 2 3 4"</code>. Instead, we send raw C structs directly from RAM.</p>
+
+      <h3>Why <code>__attribute__((packed))</code> is Vital:</h3>
+      <p>32-bit CPUs insert invisible 1-to-3-byte "padding gaps" between variables in RAM to keep data aligned with 32-bit CPU memory words. <code>__attribute__((packed))</code> forces the compiler to <strong>pack every single byte tightly with zero padding gaps</strong>. This guarantees that your board and Central have an identical byte layout down to the individual bit!</p>
+
+      <h3>Master Packet Summary Table:</h3>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Direction</th>
+              <th>C Struct Name</th>
+              <th>Exact Byte Size</th>
+              <th>Transmission Frequency</th>
+              <th>Purpose & Data Payload</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="badge badge-cyan">TX (Send)</span></td>
+              <td><code>RegistrationPacket</code></td>
+              <td><strong>38 bytes</strong></td>
+              <td>Once on boot (retries every 3s)</td>
+              <td>Registers your Team ID, Team Name, secret 4-ship fleet layout, and power loadout bitmask.</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-cyan">TX (Send)</span></td>
+              <td><code>AttackPacket</code></td>
+              <td><strong>4 bytes</strong></td>
+              <td>Once per turn when firing</td>
+              <td>Fires a single strike shot: attacker team ID, target team ID, target X (0..6), target Y (0..6).</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-cyan">TX (Send)</span></td>
+              <td><code>PowerUpPacket</code></td>
+              <td><strong>9 bytes</strong></td>
+              <td>When activating special ability</td>
+              <td>Triggers special power: power ID, team ID, target ID, up to 3 coordinate pairs (x1,y1, x2,y2, x3,y3).</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-green">RX (Recv)</span></td>
+              <td><code>RegAckPacket</code></td>
+              <td><strong>1 byte</strong></td>
+              <td>Immediately after registration</td>
+              <td>Registration response: 0 = Accepted, 1 = Rejected, 2 = Reconnected.</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-green">RX (Recv)</span></td>
+              <td><code>TurnUpdatePacket</code></td>
+              <td><strong>2 bytes</strong></td>
+              <td>Every turn change (broadcast)</td>
+              <td>Active team ID (1..4, or 0) and Match State (0=Setup, 1=Ready, 2=Running, 3=GameOver).</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-green">RX (Recv)</span></td>
+              <td><code>FeedbackPacket</code></td>
+              <td><strong>4 bytes</strong></td>
+              <td>Immediately after your attack</td>
+              <td>Target team ID, shot coordinate (X, Y), and outcome code (Hit, Miss, Sunk, Mine, Shield, Smoke).</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-green">RX (Recv)</span></td>
+              <td><code>PowerResultPacket</code></td>
+              <td><strong>7 bytes</strong></td>
+              <td>After power activation</td>
+              <td>Power ID, status (0=OK, 1=Rejected, 2=Jammed), target ID, Sonar count, shot results array.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="alert alert-info">
+        <div class="alert-title">Elegant Length-Based Routing:</div>
+        Notice that every incoming packet from Central has a <strong>strictly unique byte size</strong>: <code>RegAck</code> (1 byte), <code>TurnUpdate</code> (2 bytes), <code>Feedback</code> (4 bytes), and <code>PowerResult</code> (7 bytes)! This means your receive callback doesn't need complex packet headers; it simply checks <code>len</code> to identify the packet type instantly!
+      </div>
+
+      <h3>Detailed Binary Struct Definitions</h3>
+
+      <h4>1. RegistrationPacket (38 Bytes)</h4>
+      <pre><code>typedef struct __attribute__((packed)) {
+  uint8_t team_id;                 // 1 byte:  Assigned Team ID (1, 2, 3, or 4)
+  char team_name[20];              // 20 bytes: Null-terminated name shown on projector
+  ShipPlacement ships[NUM_SHIPS];  // 16 bytes: 4 ships x 4 bytes each
+  uint8_t loadout;                 // 1 byte:  Bitmask of chosen powers
+} RegistrationPacket;              // Total = 1 + 20 + 16 + 1 = 38 bytes</code></pre>
+
+      <h4>2. AttackPacket (4 Bytes)</h4>
+      <pre><code>typedef struct __attribute__((packed)) {
+  uint8_t attacker_id;             // 1 byte: Your team ID (1..4)
+  uint8_t target_id;               // 1 byte: Target opponent team ID (1..4)
+  uint8_t x;                       // 1 byte: Target column (0..6)
+  uint8_t y;                       // 1 byte: Target row (0..6)
+} AttackPacket;                    // Total = 4 bytes</code></pre>
+
+      <h4>3. FeedbackPacket (4 Bytes)</h4>
+      <pre><code>typedef struct __attribute__((packed)) {
+  uint8_t target_id;               // 1 byte: Target opponent team ID
+  uint8_t x;                       // 1 byte: Target column
+  uint8_t y;                       // 1 byte: Target row
+  uint8_t result_code;             // 1 byte: Result code (0 to 7)
+} FeedbackPacket;                  // Total = 4 bytes
+
+// Feedback Result Codes:
+//   0 = RESULT_MISS        (Hit open water, 0 pts)
+//   1 = RESULT_HIT         (Struck an enemy ship, +10 pts!)
+//   2 = RESULT_INVALID     (Illegal coordinate / out of turn)
+//   3 = RESULT_SUNK        (Opponent entire fleet destroyed, +20 pts!)
+//   4 = RESULT_MINE        (Struck a sea mine: miss + skip next turn)
+//   5 = RESULT_BLOCKED     (Enemy Shield absorbed your shot)
+//   6 = RESULT_UNKNOWN     (Enemy area obscured by Smoke Screen)
+//   7 = RESULT_SHIP_SUNK   (One enemy ship destroyed, +15 pts!)</code></pre>
+
+      <h4>4. TurnUpdatePacket (2 Bytes)</h4>
+      <pre><code>typedef struct __attribute__((packed)) {
+  uint8_t current_turn;            // 1 byte: Whose turn it is (1..4, or 0 if none)
+  uint8_t round_state;             // 1 byte: 0=Setup, 1=Ready, 2=Running, 3=GameOver
+} TurnUpdatePacket;                // Total = 2 bytes</code></pre>
+    </section>
+
+    <!-- Section 5: Fleet Rules -->
+    <section id="fleet-rules">
+      <h2>5. The 7x7 Grid & 16 HP Fleet Layout Rules</h2>
+      <p>The arena ocean is a <strong>7x7 coordinate grid</strong> with columns <code>X = 0..6</code> and rows <code>Y = 0..6</code>:</p>
+
+      <div class="visual-grid">
+    0   1   2   3   4   5   6   (X Column)
+  +---+---+---+---+---+---+---+
+0 | . | . | . | . | . | . | . |
+1 | . | . | . | . | . | . | . |
+2 | . | . | . | . | . | . | . |
+3 | . | . | . | . | . | . | . |  (Y Row)
+4 | . | . | . | . | . | . | . |
+5 | . | . | . | . | . | . | . |
+6 | . | . | . | . | . | . | . |
+  +---+---+---+---+---+---+---+
+      </div>
+
+      <h3>Your 4-Ship Fleet (Exactly 16 HP Total)</h3>
+      <p>Every team must deploy exactly 4 ships consisting of these lengths:</p>
+      <ul>
+        <li><strong>Ship 1 (5 cells):</strong> Straight: Horizontal, Vertical, or Diagonal (<code>—</code> / <code>|</code> / <code>\</code>)</li>
+        <li><strong>Ship 2 (4 cells):</strong> Straight: Horizontal, Vertical, or Diagonal (<code>—</code> / <code>|</code> / <code>\</code>)</li>
+        <li><strong>Ship 3 (4 cells):</strong> Straight: Horizontal, Vertical, or Diagonal (<code>—</code> / <code>|</code> / <code>\</code>)</li>
+        <li><strong>Ship 4 (3 cells):</strong> Straight: Horizontal, Vertical, or Diagonal (<code>—</code> / <code>|</code> / <code>\</code>)</li>
+        <li><em>Total Fleet HP: 5 + 4 + 4 + 3 = 16 cells!</em></li>
+      </ul>
+
+      <h3>Ship Orientations & Special Shapes</h3>
+      <p>Each ship is defined by <code>{ ship_len, start_x, start_y, orientation }</code>:</p>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Orientation Code</th>
+              <th>Name</th>
+              <th>Applicable Ships</th>
+              <th>Coordinate Offset Geometry</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>0</code></td>
+              <td><code>ORIENT_HORIZONTAL</code></td>
+              <td>Any ship (1, 2, 3, 4)</td>
+              <td>Extends horizontally rightward: <code>(x+i, y)</code></td>
+            </tr>
+            <tr>
+              <td><code>1</code></td>
+              <td><code>ORIENT_VERTICAL</code></td>
+              <td>Any ship (1, 2, 3, 4)</td>
+              <td>Extends vertically downward: <code>(x, y+i)</code></td>
+            </tr>
+            <tr>
+              <td><code>2</code></td>
+              <td><code>ORIENT_DIAG_DOWN</code></td>
+              <td>Any ship (1, 2, 3, 4)</td>
+              <td>Extends diagonally down-right: <code>(x+i, y+i)</code></td>
+            </tr>
+            <tr>
+              <td><code>3</code></td>
+              <td><code>ORIENT_DIAG_UP</code></td>
+              <td>Any ship (1, 2, 3, 4)</td>
+              <td>Extends diagonally up-right: <code>(x+i, y-i)</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="alert alert-danger">
+        <div class="alert-title">The 3 Fatal Placement Mistakes:</div>
+        <ol>
+          <li><strong>Out of Bounds:</strong> Any ship cell placed outside <code>0..6</code> causes immediate registration rejection.</li>
+          <li><strong>Overlapping Ships:</strong> If two of your ships share even a single cell, registration is rejected!</li>
+          <li><strong>Diagonal Edge Truncation:</strong> When using diagonal placement, remember that length 5 requires 5 full steps. E.g., starting at (3,0) diagonally down-right would end at (7,4), which is out of bounds!</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Section 6: Loadout Rules -->
+    <section id="loadout-rules">
+      <h2>6. Power Loadout Selection (Tactical Strategy)</h2>
+      <p>Before the match begins, each team selects their tactical loadout encoded in a single byte (<code>myLoadout</code>). You can equip up to <strong>3 active powers</strong> plus <strong>1 optional passive Shield</strong>:</p>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Bit Position</th>
+              <th>Power Name</th>
+              <th>Bitmask Constant</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Bit 0</td><td>Sonar Ping</td><td><code>LOADOUT_BIT(POWER_SONAR)</code></td><td><code>0x01</code></td></tr>
+            <tr><td>Bit 1</td><td>Salvo Strike (3 shots)</td><td><code>LOADOUT_BIT(POWER_SALVO)</code></td><td><code>0x02</code></td></tr>
+            <tr><td>Bit 2</td><td>Sea Mine</td><td><code>LOADOUT_BIT(POWER_MINE)</code></td><td><code>0x04</code></td></tr>
+            <tr><td>Bit 3</td><td>Emergency Repair</td><td><code>LOADOUT_BIT(POWER_REPAIR)</code></td><td><code>0x08</code></td></tr>
+            <tr><td>Bit 4</td><td>Smoke Screen</td><td><code>LOADOUT_BIT(POWER_SMOKE)</code></td><td><code>0x10</code></td></tr>
+            <tr><td>Bit 5</td><td>Double Strike (2 shots)</td><td><code>LOADOUT_BIT(POWER_DOUBLE)</code></td><td><code>0x20</code></td></tr>
+            <tr><td>Bit 6</td><td>Energy Shield (Passive)</td><td><code>LOADOUT_SHIELD_BIT</code></td><td><code>0x40</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Example Legal Loadout:</h3>
+      <pre><code>// Equips Sonar, Salvo, Smoke Screen, and Energy Shield:
+uint8_t myLoadout = LOADOUT_BIT(POWER_SONAR) |
+                    LOADOUT_BIT(POWER_SALVO) |
+                    LOADOUT_BIT(POWER_SMOKE) |
+                    LOADOUT_SHIELD_BIT;</code></pre>
+    </section>
+
+    <!-- Section 7: The 7 Powers -->
+    <section id="powers-detail">
+      <h2>7. The 7 Special Powers in Detail</h2>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Power</th>
+              <th>Target</th>
+              <th>Cooldown</th>
+              <th>Turn Cost</th>
+              <th>Tactical Effect</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Sonar Ping</strong></td>
+              <td>Opponent 3x3</td>
+              <td>3 rounds</td>
+              <td>Consumes Turn</td>
+              <td>Scans a 3x3 grid area on an opponent. Central replies privately with the exact count of ship cells detected. Jammed if target has Smoke Screen active. (Uses: 2x).</td>
+            </tr>
+            <tr>
+              <td><strong>Salvo Strike</strong></td>
+              <td>Opponent 3 cells</td>
+              <td>4 rounds</td>
+              <td>Consumes Turn</td>
+              <td>Fires 3 shells along a consecutive straight horizontal row or vertical column on one opponent. Massive burst damage! (Uses: 2x).</td>
+            </tr>
+            <tr>
+              <td><strong>Sea Mine</strong></td>
+              <td>Own grid 1 cell</td>
+              <td>None (1 use)</td>
+              <td>Consumes Turn</td>
+              <td>Deploys a hidden mine on your own untouched water cell. If an enemy shoots that cell, they get a Miss and are STUNNED (losing their next turn)! (Uses: 2 placements, 1 active at a time).</td>
+            </tr>
+            <tr>
+              <td><strong>Emergency Repair</strong></td>
+              <td>Own damaged cell</td>
+              <td>5 rounds</td>
+              <td>Consumes Turn</td>
+              <td>Restores 1 hit ship cell on a damaged warship back to full health (+1 HP). <strong>RESTRICTION: Completely sunken ships cannot be repaired!</strong> (Uses: 2x).</td>
+            </tr>
+            <tr>
+              <td><strong>Smoke Screen</strong></td>
+              <td>Own entire fleet</td>
+              <td>4 rounds</td>
+              <td>Consumes Turn</td>
+              <td>Tactical shroud across your entire fleet for 1 round. <strong>Deflects ALL incoming attacks and powerups (0 damage dealt)!</strong> Deflected cells mark 'S' and return to normal next turn. Jams enemy Sonar. (Uses: 2x).</td>
+            </tr>
+            <tr>
+              <td><strong>Energy Shield</strong></td>
+              <td>Own 3x3 area (center 1..5)</td>
+              <td>Match Start</td>
+              <td>Consumes Turn</td>
+              <td>Protects a 3x3 block on your fleet for 1 round. Enemy shots landing inside are BLOCKED (0 damage). 2-round cooldown between uses. (Uses: Unlimited).</td>
+            </tr>
+            <tr>
+              <td><strong>Double Strike</strong></td>
+              <td>Opponent 2 cells</td>
+              <td>3 rounds</td>
+              <td>Consumes Turn</td>
+              <td>Fires 2 shells simultaneously at any two distinct coordinates on the same opponent. (Uses: 2x).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Section 8: Scoring -->
+    <section id="scoring">
+      <h2>8. Scoring & Tournament Match Phases</h2>
+      <p>Points determine match victories and playoff qualifications:</p>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Event</th>
+              <th>Points Awarded</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Circuit & GUI Build</strong></td>
+              <td><span class="badge badge-green">+20 Points</span></td>
+              <td>Correct circuit implementation and GUI development (only for round 1).</td>
+            </tr>
+            <tr>
+              <td><strong>Normal Hit</strong></td>
+              <td><span class="badge badge-green">+10 Points</span></td>
+              <td>Each ship cell damaged. Hitting a Mine or Shield gives 0 points.</td>
+            </tr>
+            <tr>
+              <td><strong>Sinking a Ship</strong></td>
+              <td><span class="badge badge-green">+15 Points</span></td>
+              <td>+10 hit, +5 sink bonus. Awarded when you destroy the final remaining cell of an enemy ship.</td>
+            </tr>
+            <tr>
+              <td><strong>Eliminating a Team</strong></td>
+              <td><span class="badge badge-cyan">+20 Points</span></td>
+              <td>+10 hit, +5 sink bonus, +5 elimination bonus. Awarded to the player who sinks the last ship of an opponent fleet!</td>
+            </tr>
+            <tr>
+              <td><strong>Last Team Standing</strong></td>
+              <td><span class="badge badge-cyan">+30 Points</span></td>
+              <td>Survival bonus awarded to the last surviving team of the match.</td>
+            </tr>
+            <tr>
+              <td><strong>Miss (Water)</strong></td>
+              <td><span class="badge badge-amber">0 Points</span></td>
+              <td>Shell splashes into open water. Nothing gained, nothing lost.</td>
+            </tr>
+            <tr>
+              <td><strong>Triggering a Mine</strong></td>
+              <td><span class="badge badge-red">0 Pts + Skip Turn</span></td>
+              <td>Hitting a Mine or Shield gives 0 points. Mine causes you to forfeit your next turn.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Match Round States</h3>
+      <ul>
+        <li><code>State 0 (SETUP):</code> Central is accepting registrations from all 4 participant boards.</li>
+        <li><code>State 1 (READY):</code> All teams registered; match countdown initiated.</li>
+        <li><code>State 2 (RUNNING):</code> Active combat! Central cycles turns (1 &rarr; 2 &rarr; 3 &rarr; 4 &rarr; 1). Each team has a turn countdown timer.</li>
+        <li><code>State 3 (GAME OVER):</code> One team remains or time limit reached. Winner declared on screen.</li>
+      </ul>
+    </section>
+
+    <!-- Section 9: Hex Examples -->
+    <section id="hex-examples">
+      <h2>9. Example Raw Hex Bytes (Sniffer View)</h2>
+      <p>For teams curious about low-level radio packets, here is what travels through the airwaves over ESP-NOW:</p>
+      <pre><code>// 1. RegistrationPacket (38 bytes) - Team 1 "TEAM 1" with loadout 0x71:
+01 54 45 41 4D 20 31 00 00 00 00 00 00 00 00 00 00 00 00 00 00 05 00 00 00 04 00 02 00 04 03 03 04 03 05 00 01 71
+
+// 2. AttackPacket (4 bytes) - Team 1 attacks Team 2 at coordinate (X=3, Y=4):
+01 02 03 04
+
+// 3. FeedbackPacket (4 bytes) - Shot on Team 2 at (3, 4) was a HIT (result code 01):
+02 03 04 01
+
+// 4. TurnUpdatePacket (2 bytes) - Team 2's turn to fire, match state is Running (02):
+02 02
+
+// 5. Sonar PowerUpPacket (9 bytes) - Team 1 scans Team 2 centered at (3, 4):
+01 01 02 03 04 00 00 00 00
+
+// 6. PowerResultPacket (7 bytes) - Sonar accepted (00), 2 enemy cells detected:
+01 00 02 02 02 02 02</code></pre>
+    </section>
+
+<!-- Section 10: Troubleshooting -->
+    <section id="troubleshooting">
+      <h2>10. Exhaustive Troubleshooting Guide ("If Nothing Works")</h2>
+      
+      <h3>1. Display & Screen Issues</h3>
+      <ul>
+        <li><strong>White Screen / Blank Screen:</strong> Check your wiring, especially <code>VCC</code>, <code>GND</code>, and <code>LED</code> (backlight power). Ensure <code>User_Setup.h</code> in the <code>TFT_eSPI</code> library folder has <code>#define ILI9341_DRIVER</code> uncommented and all pin numbers match the wiring table.</li>
+        <li><strong>Colors Inverted (e.g. Blue looks Red):</strong> In <code>setup()</code>, add <code>tft.invertDisplay(false);</code> (or <code>true</code>) after <code>tft.init();</code>.</li>
+        <li><strong>Touch Taps Not Responding:</strong> Verify the 4 touch lines (<code>T_CLK</code>, <code>T_CS</code>, <code>T_DIN</code>, <code>T_DO</code>). Ensure <code>TOUCH_CS</code> is defined as <code>15</code> in <code>User_Setup.h</code>.</li>
+      </ul>
+
+      <h3>2. Radio & ESP-NOW Issues</h3>
+      <ul>
+        <li><strong>Central ignores my registration:</strong> Did you give the organizers your board's MAC address? Central's whitelist rejects unknown boards.</li>
+        <li><strong>Send fails with error 12392 (<code>ESP_ERR_ESPNOW_NOT_FOUND</code>):</strong> You forgot to call <code>esp_now_add_peer()</code> before sending! Check that <code>addCentralPeer()</code> succeeded and <code>centralMac</code> matches Central's displayed MAC.</li>
+        <li><strong>No turn updates received:</strong> Ensure <code>ESPNOW_CHANNEL</code> is set to <code>1</code>. Wi-Fi radios cannot talk across different channels.</li>
+      </ul>
+
+      <h3>3. Breadboard LEDs & Buzzer Issues</h3>
+      <ul>
+        <li><strong>LED does not light up:</strong> Check polarity (long leg = positive Anode, short leg = GND). Verify you didn't plug into an input-only pin (GPIO 34-39 cannot drive LEDs).</li>
+        <li><strong>Buzzer makes no sound:</strong> Ensure your buzzer pin is configured as <code>OUTPUT</code> with <code>pinMode()</code>, and use the <code>tone(pin, freq, duration)</code> function. Note: Passive buzzers require <code>tone()</code>; active buzzers require <code>digitalWrite(pin, HIGH)</code>.</li>
+        <li><strong>ESP32 resets repeatedly (Brownout):</strong> Do NOT power the display backlight or buzzers from delicate 3.3V pins without adequate USB current. Use a good USB cable and port.</li>
+      </ul>
+
+      <h3>4. Game Logic & Rules Issues</h3>
+      <ul>
+        <li><strong>Registration rejected (Code 1):</strong> One of your ships is out of bounds (&gt;6) or two of your ships overlap each other. Check your coordinates in <code>myShips[]</code>.</li>
+        <li><strong>Attack rejected (RESULT_INVALID):</strong> You fired when it was not your turn, or fired at your own team ID, or targeted an invalid coordinate outside <code>0..6</code>.</li>
+      </ul>
+    </section>
+
+  </main>
+</div>
+
+</body>
+</html>
